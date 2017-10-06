@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/appwidget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/appwidget_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="#00000000"
+        android:text="@string/appwidget_text"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+
+    <TextView
+        android:id="@+id/appwidget_text_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:gravity="end"
+        android:text="——来自 新添声杨柳枝词"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+
+</LinearLayout>

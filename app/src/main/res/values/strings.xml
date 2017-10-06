@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">红豆</string>
+    <string name="appwidget_text">玲珑骰子安红豆，\n入骨相思知不知</string>
+    <string name="add_widget">创建小组件</string>
+
+    <string-array name="selectRequestType">
+        <item>动画</item>
+        <item>漫画</item>
+        <item>游戏</item>
+        <item>小说</item>
+        <item>原创</item>
+        <item>网络</item>
+        <item>其它</item>
+        <item>随机</item>
+    </string-array>
+
+    <string-array name="selectRequestLoop">
+        <item>30分钟</item>
+        <item>1小时</item>
+        <item>2小时</item>
+        <item>手动</item>
+    </string-array>
+
+    <string-array name="clickEvents">
+        <item>刷新句子</item>
+        <item>到主界面（就是这个界面）</item>
+        <item>无响应</item>
+    </string-array>
+
+    <string-array name="textGravity">
+        <item>向左对齐</item>
+        <item>向右对齐</item>
+        <item>居中显示</item>
+    </string-array>
+
+
+</resources>
