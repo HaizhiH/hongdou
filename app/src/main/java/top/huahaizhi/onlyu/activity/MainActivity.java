@@ -4,14 +4,17 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +27,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.SQLException;
 import java.util.Random;
 
@@ -31,6 +37,7 @@ import top.huahaizhi.onlyu.R;
 import top.huahaizhi.onlyu.bean.SettingsBean;
 import top.huahaizhi.onlyu.database.SQLiteHelper;
 import top.huahaizhi.onlyu.service.YiYanService;
+import top.huahaizhi.onlyu.thread.BaseRequest;
 import top.huahaizhi.onlyu.widget.MissView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
@@ -56,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        checkUpdate();
         helper = new SQLiteHelper(this);
         if (AppWidgetManager.getInstance(this).getAppWidgetIds(new ComponentName(this, MissView.class)).length != 0)
             startService(new Intent(this, YiYanService.class).putExtra("Update", false));
@@ -65,6 +73,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
         initView();
+    }
+
+    /**
+     * 检查更新
+     */
+    private void checkUpdate() {
+        int versionCode;
+        try {
+            versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            Toast.makeText(this, "无法获取版本号，检查更新不可用。", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        new BaseRequest(this).setUrl("http://cloud.bmob.cn/c08218628cf8326c/checkUpdate?versionCode=" + versionCode).go(new BaseRequest.RequestListener() {
+            @Override
+            public void onSuccess(String response) {
+                JSONObject resultJson = null;
+                try {
+                    resultJson = new JSONObject(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if (resultJson == null) {
+                    return;
+                }
+                String newVersionName = resultJson.optString("newVersionName");
+                String updateNote = resultJson.optString("versionReadme");
+                final String downloadUrl = resultJson.optString("downloadUrl");
+                if (TextUtils.isEmpty(newVersionName) || TextUtils.isEmpty(updateNote) || TextUtils.isEmpty(downloadUrl))
+                    return;
+                new AlertDialog.Builder(MainActivity.this).setTitle("发现新版本😄").setMessage("本次更新(" + newVersionName + ")：\n\n  " + updateNote).setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        gotoWeb(downloadUrl);
+                    }
+                }).show();
+            }
+        });
     }
 
     private void initView() {
@@ -164,18 +210,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new AlertDialog.Builder(this).setTitle("非常感谢:)").setMessage("非常感谢你的心意，你无需为此捐赠。这是一个开源项目。如果你的手头非常宽裕，可以考虑为OpenSSL™捐款").setPositiveButton("转到OpenSSL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse("https://www.openssl.org/"));
-                        startActivity(intent);
+                        gotoWeb("https://www.openssl.org/");
                     }
                 }).setNeutralButton("项目地址(GitHub)", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse("https://github.com/HaizhiH/hongdou/"));
-                        startActivity(intent);
+                        gotoWeb("https://github.com/HaizhiH/hongdou/");
                     }
                 }).setNegativeButton("取消", null).show();
                 break;
@@ -216,14 +256,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void update() {
-        try {
-            helper.getSettingsDao().update(settingsBean);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
@@ -239,4 +271,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         update();
     }
+
+    private void gotoWeb(String url) {
+        if(TextUtils.isEmpty(url))
+            return;
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+    private void update() {
+        try {
+            helper.getSettingsDao().update(settingsBean);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

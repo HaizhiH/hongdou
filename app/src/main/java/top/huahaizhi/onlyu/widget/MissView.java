@@ -11,6 +11,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import com.google.gson.Gson;
+
 import top.huahaizhi.onlyu.R;
 import top.huahaizhi.onlyu.activity.SplashActivity;
 import top.huahaizhi.onlyu.bean.ResultBean;
@@ -18,6 +20,7 @@ import top.huahaizhi.onlyu.bean.SettingsBean;
 import top.huahaizhi.onlyu.database.SQLiteHelper;
 import top.huahaizhi.onlyu.receiver.YiYanReceiver;
 import top.huahaizhi.onlyu.service.YiYanService;
+import top.huahaizhi.onlyu.thread.BaseRequest;
 import top.huahaizhi.onlyu.thread.YiYanRequest;
 
 import static android.util.TypedValue.COMPLEX_UNIT_SP;
@@ -60,16 +63,20 @@ public class MissView extends AppWidgetProvider {
         if (!TextUtils.isEmpty(result.getFrom()))
             view.setTextViewText(R.id.appwidget_text_from, "——来自 " + result.getFrom());
 
+        //保存到本地
+        if (bean.isSaveYiYanToLocal())
+            new SQLiteHelper(context).saveYiYan(result);
+
         appWidgetManager.updateAppWidget(appWidgetId, view);
     }
 
     @Override
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for (final int appWidgetId : appWidgetIds) {
-            new YiYanRequest(context).go(new YiYanRequest.RequestListener() {
+            new YiYanRequest(context).go(new BaseRequest.RequestListener() {
                 @Override
-                public void onSuccess(ResultBean bean) {
-                    updateAppWidget(context, appWidgetManager, appWidgetId, bean);
+                public void onSuccess(String response) {
+                    updateAppWidget(context, appWidgetManager, appWidgetId, new Gson().fromJson(response,ResultBean.class));
                 }
             });
         }

@@ -63,4 +63,12 @@ public class SQLiteHelper extends OrmLiteSqliteOpenHelper {
             return null;
         }
     }
+
+    public void saveYiYan(ResultBean resultBean){
+        try {
+            getResultDao().create(resultBean);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

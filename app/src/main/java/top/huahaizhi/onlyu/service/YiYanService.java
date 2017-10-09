@@ -11,12 +11,15 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 
+import com.google.gson.Gson;
+
 import java.sql.SQLException;
 
 import top.huahaizhi.onlyu.bean.ResultBean;
 import top.huahaizhi.onlyu.bean.SettingsBean;
 import top.huahaizhi.onlyu.database.SQLiteHelper;
 import top.huahaizhi.onlyu.receiver.YiYanReceiver;
+import top.huahaizhi.onlyu.thread.BaseRequest;
 import top.huahaizhi.onlyu.thread.YiYanRequest;
 import top.huahaizhi.onlyu.widget.MissView;
 
@@ -43,12 +46,12 @@ public class YiYanService extends Service {
         if(intent==null)
             return super.onStartCommand(null, flags, startId);
         if(intent.getBooleanExtra("Update",true)) {
-            new YiYanRequest(this).go(new YiYanRequest.RequestListener() {
+            new YiYanRequest(this).go(new BaseRequest.RequestListener() {
                 @Override
-                public void onSuccess(ResultBean bean) {
+                public void onSuccess(String response) {
                     int[] appWidgetIds = AppWidgetManager.getInstance(YiYanService.this).getAppWidgetIds(new ComponentName(YiYanService.this, MissView.class));
                     for (int i : appWidgetIds) {
-                        MissView.updateAppWidget(YiYanService.this, AppWidgetManager.getInstance(YiYanService.this), i, bean);
+                        MissView.updateAppWidget(YiYanService.this, AppWidgetManager.getInstance(YiYanService.this), i, new Gson().fromJson(response,ResultBean.class));
                     }
                 }
             });
