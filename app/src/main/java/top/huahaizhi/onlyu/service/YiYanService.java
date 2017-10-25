@@ -51,7 +51,6 @@ public class YiYanService extends Service {
             new YiYanRequest(this).go(new BaseRequest.RequestListener() {
                 @Override
                 public void onSuccess(String response) {
-                    Log.e(TAG, "onSuccess: "+response );
                     int[] appWidgetIds = AppWidgetManager.getInstance(YiYanService.this).getAppWidgetIds(new ComponentName(YiYanService.this, MissView.class));
                     for (int i : appWidgetIds) {
                         try {
