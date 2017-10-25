@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.sql.SQLException;
 
@@ -49,9 +51,14 @@ public class YiYanService extends Service {
             new YiYanRequest(this).go(new BaseRequest.RequestListener() {
                 @Override
                 public void onSuccess(String response) {
+                    Log.e(TAG, "onSuccess: "+response );
                     int[] appWidgetIds = AppWidgetManager.getInstance(YiYanService.this).getAppWidgetIds(new ComponentName(YiYanService.this, MissView.class));
                     for (int i : appWidgetIds) {
-                        MissView.updateAppWidget(YiYanService.this, AppWidgetManager.getInstance(YiYanService.this), i, new Gson().fromJson(response,ResultBean.class));
+                        try {
+                            MissView.updateAppWidget(YiYanService.this, AppWidgetManager.getInstance(YiYanService.this), i, new Gson().fromJson(response, ResultBean.class));
+                        }catch (Exception e){
+
+                        }
                     }
                 }
             });
@@ -63,6 +70,8 @@ public class YiYanService extends Service {
         }
         return super.onStartCommand(intent, flags, startId);
     }
+
+    private static final String TAG = "YiYanService";
 
     @Nullable
     @Override
