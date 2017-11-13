@@ -9,7 +9,7 @@
 
 ## 安装
 clone源码后，使用Android Studio导入，然后编译并运行到你的手机上。如果你想获得release版本的APK，可以从酷安网下载并安装。
-下载地址：https://www.coolapk.com/apk/top.huahaizhi.onlyu
+[下载地址](https://www.coolapk.com/apk/top.huahaizhi.onlyu)
 
 
 ## 帮助&反馈
