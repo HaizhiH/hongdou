@@ -8,7 +8,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:contentDescription="@null" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dip"
-                android:text="网络"
+                android:text="@string/category_internet"
                 android:textColor="@color/colorCardBg"
                 android:textSize="20sp" />
 
@@ -47,7 +48,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dip"
-                        android:text="句子类型"
+                        android:text="@string/type_of_yiyan"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -62,7 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dip"
-                        android:text="请求间隔"
+                        android:text="@string/sleep_time"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -87,7 +88,7 @@
                 android:layout_marginEnd="5dip"
                 android:layout_marginStart="5dip"
                 android:layout_marginTop="5dip"
-                android:text="本地"
+                android:text="@string/category_local"
                 android:textColor="@color/colorCardBg"
                 android:textSize="20sp" />
 
@@ -108,7 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dip"
-                        android:text="保存一言到本地"
+                        android:text="@string/save_yiyan_to_local"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -118,7 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:text="查看已保存内容"
+                        android:text="@string/saved_content"
                         android:textColor="@color/colorAccent" />
 
                 </LinearLayout>
@@ -134,7 +135,7 @@
                 android:layout_marginEnd="5dip"
                 android:layout_marginStart="5dip"
                 android:layout_marginTop="5dip"
-                android:text="小组件"
+                android:text="@string/category_wight"
                 android:textColor="@color/colorCardBg"
                 android:textSize="20sp" />
 
@@ -153,7 +154,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dip"
-                        android:text="设置字体大小"
+                        android:text="@string/set_font_size"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -185,7 +186,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dip"
-                        android:text="设置字体颜色"
+                        android:text="@string/set_font_color"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -194,7 +195,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dip"
-                        android:hint="输入16进制颜色值（不包括#）"
+                        android:hint="@string/input_color_value"
+                        android:maxLength="6"
+                        android:maxLines="1"
+                        android:textSize="18sp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dip"
+                        android:text="@string/custom_yiyan"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_main_inputYiYan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dip"
+                        android:hint="@string/input_custom_text"
                         android:maxLength="6"
                         android:maxLines="1"
                         android:textSize="18sp" />
@@ -203,7 +223,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dip"
-                        android:text="设置点击事件："
+                        android:text="@string/set_click_event"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -218,7 +238,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dip"
-                        android:text="设置对齐方式："
+                        android:text="@string/set_alien"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -234,7 +254,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dip"
-                        android:text="句子出处"
+                        android:text="@string/yiyan_from"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -243,7 +263,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dip"
-                        android:text="追加句号"
+                        android:text="@string/add_dot"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -262,7 +282,7 @@
                     style="@style/Base.Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="捐赠"
+                    android:text="@string/donate"
                     android:textColor="@color/colorAccent" />
 
                 <android.support.v7.widget.AppCompatButton
@@ -270,7 +290,7 @@
                     style="@style/Base.Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="关于"
+                    android:text="@string/about"
                     android:textColor="@color/colorAccent" />
 
             </LinearLayout>

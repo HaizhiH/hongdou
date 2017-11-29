@@ -40,7 +40,7 @@ import top.huahaizhi.onlyu.service.YiYanService;
 import top.huahaizhi.onlyu.thread.BaseRequest;
 import top.huahaizhi.onlyu.widget.MissView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener, TextWatcher {
 
     private Spinner spinnerMainSelectTime;
     private Spinner spinnerMainSelectType;
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private NumberPicker numPickerMainSelectNum;
     private TextView textMainDemo;
     private EditText etInputTextColor;
+    private EditText etInputCustomYiyan;
     private Spinner spinnerMainSelectClickEvent;
     private Spinner spinnerMainSelectGravity;
     private SwitchCompat toggleMainTextFrom;
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         numPickerMainSelectNum = (NumberPicker) findViewById(R.id.numPicker_main_selectNum);
         textMainDemo = (TextView) findViewById(R.id.text_main_demo);
         etInputTextColor = (EditText) findViewById(R.id.et_main_inputColor);
+        etInputCustomYiyan = (EditText) findViewById(R.id.et_main_inputYiYan);
         spinnerMainSelectClickEvent = (Spinner) findViewById(R.id.spinner_main_selectClickEvent);
         spinnerMainSelectGravity = (Spinner) findViewById(R.id.spinner_main_selectGravity);
         toggleMainTextFrom = (SwitchCompat) findViewById(R.id.toggle_main_textFrom);
@@ -134,6 +136,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btMainShowLocalYiYan.setOnClickListener(this);
         btMainDonate.setOnClickListener(this);
         btMainAbout.setOnClickListener(this);
+
+        etInputCustomYiyan.addTextChangedListener(this);
 
         spinnerMainSelectTime.setAdapter(getAdapter(R.array.selectRequestLoop));
         spinnerMainSelectType.setAdapter(getAdapter(R.array.selectRequestType));
@@ -272,8 +276,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         update();
     }
 
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
+
     private void gotoWeb(String url) {
-        if(TextUtils.isEmpty(url))
+        if (TextUtils.isEmpty(url))
             return;
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
@@ -288,5 +307,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
     }
-
 }

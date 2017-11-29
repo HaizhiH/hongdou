@@ -2,6 +2,24 @@
     <string name="app_name">红豆</string>
     <string name="appwidget_text">玲珑骰子安红豆，\n入骨相思知不知</string>
     <string name="add_widget">创建小组件</string>
+    <string name="category_internet">网络</string>
+    <string name="type_of_yiyan">句子类型</string>
+    <string name="sleep_time">请求间隔</string>
+    <string name="category_local">本地</string>
+    <string name="save_yiyan_to_local">保存一言到本地</string>
+    <string name="saved_content">查看已保存内容</string>
+    <string name="category_wight">小组件</string>
+    <string name="set_font_size">设置字体大小</string>
+    <string name="set_font_color">设置字体颜色</string>
+    <string name="input_color_value">输入16进制颜色值（不包括#）</string>
+    <string name="set_click_event">设置点击事件：</string>
+    <string name="set_alien">设置对齐方式：</string>
+    <string name="yiyan_from">句子出处</string>
+    <string name="add_dot">追加句号</string>
+    <string name="donate">捐赠</string>
+    <string name="about">关于</string>
+    <string name="custom_yiyan">自定义一言</string>
+    <string name="input_custom_text">输入自定义文字</string>
 
     <string-array name="selectRequestType">
         <item>动画</item>
