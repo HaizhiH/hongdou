@@ -76,7 +76,11 @@ public class MissView extends AppWidgetProvider {
             new YiYanRequest(context).go(new BaseRequest.RequestListener() {
                 @Override
                 public void onSuccess(String response) {
-                    updateAppWidget(context, appWidgetManager, appWidgetId, new Gson().fromJson(response,ResultBean.class));
+                    if(!TextUtils.isEmpty(response)){
+                        ResultBean yiyanResult = new Gson().fromJson(response,ResultBean.class);
+                        if(yiyanResult != null)
+                            updateAppWidget(context, appWidgetManager, appWidgetId, yiyanResult);
+                    }
                 }
             });
         }
