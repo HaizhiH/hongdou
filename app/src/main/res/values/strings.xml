@@ -19,7 +19,7 @@
     <string name="donate">捐赠</string>
     <string name="about">关于</string>
     <string name="custom_yiyan">自定义一言</string>
-    <string name="input_custom_text">输入自定义文字</string>
+    <string name="input_custom_text">输入自定义文字，留空表示从网络请求</string>
 
     <string-array name="selectRequestType">
         <item>动画</item>
