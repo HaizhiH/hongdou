@@ -10,38 +10,17 @@
         android:orientation="vertical"
         android:padding="5dip">
 
-        <!-- 网络   -->
+        <!-- 网络 -->
         <include layout="@layout/layout_net_setting" />
 
-        <!-- 本地   -->
+        <!-- 本地 -->
         <include layout="@layout/layout_local_setting" />
 
-        <!-- 小组件   -->
+        <!-- 小组件 -->
         <include layout="@layout/layout_widget_setting" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="horizontal">
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/bt_main_donate"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/donate"
-                android:textColor="@color/colorAccent" />
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/bt_main_about"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/about"
-                android:textColor="@color/colorAccent" />
-
-        </LinearLayout>
+        <!-- 底部按钮 -->
+        <include layout="@layout/layout_bottom" />
 
     </LinearLayout>
 
