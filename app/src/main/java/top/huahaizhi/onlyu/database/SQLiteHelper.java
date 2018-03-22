@@ -10,6 +10,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 
+import top.huahaizhi.onlyu.bean.CustomYiYanBean;
 import top.huahaizhi.onlyu.bean.ResultBean;
 import top.huahaizhi.onlyu.bean.SettingsBean;
 
@@ -39,6 +40,14 @@ public class SQLiteHelper extends OrmLiteSqliteOpenHelper {
 
     }
 
+    public Dao<CustomYiYanBean, Integer> getCustomYiYanDao(){
+        try {
+            return getDao(CustomYiYanBean.class);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public Dao<ResultBean, Integer> getResultDao() {
         try {
             return getDao(ResultBean.class);
@@ -64,9 +73,17 @@ public class SQLiteHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    public void saveYiYan(ResultBean resultBean){
+    public void saveYiYan(ResultBean resultBean) {
         try {
             getResultDao().create(resultBean);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveCustomYiYan(CustomYiYanBean customYiYan) {
+        try {
+            getCustomYiYanDao().create(customYiYan);
         } catch (SQLException e) {
             e.printStackTrace();
         }
