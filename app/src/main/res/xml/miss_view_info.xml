@@ -7,4 +7,4 @@
     android:previewImage="@drawable/splash_bg"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="1000"
-    android:widgetCategory="home_screen"/>
+    android:widgetCategory="home_screen" />

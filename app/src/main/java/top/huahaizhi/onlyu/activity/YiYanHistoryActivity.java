@@ -24,7 +24,7 @@ import top.huahaizhi.onlyu.adapter.HistoryAdapter;
 import top.huahaizhi.onlyu.bean.ResultBean;
 import top.huahaizhi.onlyu.database.SQLiteHelper;
 
-public class YiYanHistoryActivity extends AppCompatActivity implements  BaseQuickAdapter.OnItemLongClickListener {
+public class YiYanHistoryActivity extends AppCompatActivity implements BaseQuickAdapter.OnItemLongClickListener {
 
     private List<ResultBean> results;
     private RecyclerView recyclerView;
@@ -38,7 +38,7 @@ public class YiYanHistoryActivity extends AppCompatActivity implements  BaseQuic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yi_yan_history);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_history_searchResult);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle("本地的一言");
         try {
@@ -65,12 +65,12 @@ public class YiYanHistoryActivity extends AppCompatActivity implements  BaseQuic
         new AlertDialog.Builder(this).setTitle("是否复制？").setPositiveButton("👌", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                ClipData clipData = ClipData.newPlainText("text",results.get(position).getHitokoto());
+                ClipData clipData = ClipData.newPlainText("text", results.get(position).getHitokoto());
                 ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 cm.setPrimaryClip(clipData);
                 Toast.makeText(YiYanHistoryActivity.this, "复制成功～", Toast.LENGTH_SHORT).show();
             }
-        }).setNegativeButton("取消",null).show();
+        }).setNegativeButton("取消", null).show();
         return false;
     }
 }

@@ -45,9 +45,9 @@ public class YiYanService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(intent==null)
+        if (intent == null)
             return super.onStartCommand(null, flags, startId);
-        if(intent.getBooleanExtra("Update",true)) {
+        if (intent.getBooleanExtra("Update", true)) {
             new YiYanRequest(this).go(new BaseRequest.RequestListener() {
                 @Override
                 public void onSuccess(String response) {
@@ -55,7 +55,7 @@ public class YiYanService extends Service {
                     for (int i : appWidgetIds) {
                         try {
                             MissView.updateAppWidget(YiYanService.this, AppWidgetManager.getInstance(YiYanService.this), i, new Gson().fromJson(response, ResultBean.class));
-                        }catch (Exception e){
+                        } catch (Exception e) {
 
                         }
                     }

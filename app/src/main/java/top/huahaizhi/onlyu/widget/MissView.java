@@ -76,9 +76,9 @@ public class MissView extends AppWidgetProvider {
             new YiYanRequest(context).go(new BaseRequest.RequestListener() {
                 @Override
                 public void onSuccess(String response) {
-                    if(!TextUtils.isEmpty(response)){
-                        ResultBean yiyanResult = new Gson().fromJson(response,ResultBean.class);
-                        if(yiyanResult != null)
+                    if (!TextUtils.isEmpty(response)) {
+                        ResultBean yiyanResult = new Gson().fromJson(response, ResultBean.class);
+                        if (yiyanResult != null)
                             updateAppWidget(context, appWidgetManager, appWidgetId, yiyanResult);
                     }
                 }
@@ -94,7 +94,7 @@ public class MissView extends AppWidgetProvider {
 
     @Override
     public void onDisabled(Context context) {
-        if(context!=null) {
+        if (context != null) {
             context.stopService(new Intent(context, YiYanService.class));
             AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             manager.cancel(PendingIntent.getBroadcast(context, 0x001, new Intent(context, YiYanReceiver.class), 0));

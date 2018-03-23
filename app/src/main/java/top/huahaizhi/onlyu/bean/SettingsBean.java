@@ -19,21 +19,21 @@ public class SettingsBean {
     @DatabaseField
     private boolean saveYiYanToLocal = true;
     @DatabaseField
-    private int textSize= 14;
+    private int textSize = 14;
     @DatabaseField
-    private int textColor= Color.parseColor("#ffffff");
+    private int textColor = Color.parseColor("#ffffff");
     @DatabaseField
-    private int clickEvent= 0;
+    private int clickEvent = 0;
     @DatabaseField
-    private int textGravity= 0;
+    private int textGravity = 0;
     @DatabaseField
-    private boolean isTextVertical= false;
+    private boolean isTextVertical = false;
     @DatabaseField
-    private boolean isTextShadow= false;
+    private boolean isTextShadow = false;
     @DatabaseField
-    private boolean isTextFrom= false;
+    private boolean isTextFrom = false;
     @DatabaseField
-    private boolean addTextDot= false;
+    private boolean addTextDot = false;
     @DatabaseField
     private String customYiYan = "";
 
