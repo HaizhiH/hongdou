@@ -14,14 +14,13 @@
         android:textColor="#000000"
         android:textSize="22sp" />
 
-
     <TextView
         android:id="@+id/appwidget_text_from"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dip"
         android:gravity="end"
-        android:text="——来自 新添声杨柳枝词"
+        android:text="@string/appwidget_text_from"
         android:textColor="#000000"
         android:textSize="22sp" />
 

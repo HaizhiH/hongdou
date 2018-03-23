@@ -20,6 +20,7 @@
     <string name="about">关于</string>
     <string name="custom_yiyan">自定义一言</string>
     <string name="input_custom_text">输入自定义文字，留空表示从网络请求</string>
+    <string name="appwidget_text_from">——来自 新添声杨柳枝词</string>
 
     <string-array name="selectRequestType">
         <item>动画</item>
