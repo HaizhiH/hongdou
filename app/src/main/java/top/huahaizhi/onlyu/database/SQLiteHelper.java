@@ -47,7 +47,6 @@ public class SQLiteHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
-
     public Dao<SettingsBean, Integer> getSettingsDao() {
         try {
             return getDao(SettingsBean.class);
