@@ -200,6 +200,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             toggleMainTextFrom.setChecked(settingsBean.isTextFrom());
             toggleMainAddDot.setChecked(settingsBean.isAddTextDot());
+
+            etInputCustomYiyan.setText(settingsBean.getCustomYiYan());
         }
 
     }
@@ -288,7 +290,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void afterTextChanged(Editable editable) {
-
+        String customYiYan = editable.toString();
+        if (customYiYan.hashCode() == etInputCustomYiyan.getText().toString().hashCode()) {
+            settingsBean.setCustomYiYan(customYiYan);
+        }
     }
 
     private void gotoWeb(String url) {

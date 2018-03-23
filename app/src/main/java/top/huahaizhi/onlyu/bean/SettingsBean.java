@@ -34,6 +34,8 @@ public class SettingsBean {
     private boolean isTextFrom= false;
     @DatabaseField
     private boolean addTextDot= false;
+    @DatabaseField
+    private String customYiYan = "";
 
     public int getRequestType() {
         return requestType;
@@ -105,6 +107,14 @@ public class SettingsBean {
 
     public void setTextShadow(boolean textShadow) {
         isTextShadow = textShadow;
+    }
+
+    public String getCustomYiYan() {
+        return customYiYan;
+    }
+
+    public void setCustomYiYan(String customYiYan) {
+        this.customYiYan = customYiYan;
     }
 
     public boolean isTextFrom() {
