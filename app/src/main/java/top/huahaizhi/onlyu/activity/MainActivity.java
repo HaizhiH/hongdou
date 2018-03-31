@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        checkUpdate();
         helper = new SQLiteHelper(this);
         if (AppWidgetManager.getInstance(this).getAppWidgetIds(new ComponentName(this, MissView.class)).length != 0)
             startService(new Intent(this, YiYanService.class).putExtra("Update", false));
@@ -74,44 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
         initView();
-    }
-
-    /**
-     * 检查更新
-     */
-    private void checkUpdate() {
-        int versionCode;
-        try {
-            versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            Toast.makeText(this, "无法获取版本号，检查更新不可用。", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        new BaseRequest(this).setUrl("http://cloud.bmob.cn/c08218628cf8326c/checkUpdate?versionCode=" + versionCode).go(new BaseRequest.RequestListener() {
-            @Override
-            public void onSuccess(String response) {
-                JSONObject resultJson = null;
-                try {
-                    resultJson = new JSONObject(response);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                if (resultJson == null) {
-                    return;
-                }
-                String newVersionName = resultJson.optString("newVersionName");
-                String updateNote = resultJson.optString("versionReadme");
-                final String downloadUrl = resultJson.optString("downloadUrl");
-                if (TextUtils.isEmpty(newVersionName) || TextUtils.isEmpty(updateNote) || TextUtils.isEmpty(downloadUrl))
-                    return;
-                new AlertDialog.Builder(MainActivity.this).setTitle("发现新版本😄").setMessage("本次更新(" + newVersionName + ")：\n\n  " + updateNote).setPositiveButton("更新", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        gotoWeb(downloadUrl);
-                    }
-                }).show();
-            }
-        });
     }
 
     private void initView() {
