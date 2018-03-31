@@ -28,7 +28,7 @@ import static android.util.TypedValue.COMPLEX_UNIT_SP;
 public class MissView extends AppWidgetProvider {
 
     public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, ResultBean result) {
-        SettingsBean bean = new SQLiteHelper(context).getBean(context);
+        SettingsBean bean = new SQLiteHelper(context).getBean();
         RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.miss_view);
 
         view.setTextViewTextSize(R.id.appwidget_text, COMPLEX_UNIT_SP, bean.getTextSize());

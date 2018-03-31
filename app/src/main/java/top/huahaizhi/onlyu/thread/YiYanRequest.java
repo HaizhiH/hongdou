@@ -23,7 +23,7 @@ public class YiYanRequest extends BaseRequest {
 
     public YiYanRequest(Context context) {
         super(context);
-        SettingsBean bean = new SQLiteHelper(context).getBean(context);
+        SettingsBean bean = new SQLiteHelper(context).getBean();
         String type = "abcdefg ".charAt(bean.getRequestType()) + "";
         url = "https://sslapi.hitokoto.cn?c=" + type + "&encode=json";
     }

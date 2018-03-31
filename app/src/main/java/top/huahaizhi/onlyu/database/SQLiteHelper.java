@@ -55,7 +55,7 @@ public class SQLiteHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    public SettingsBean getBean(Context context) {
+    public SettingsBean getBean() {
         try {
             return getSettingsDao().queryForAll().get(0);
         } catch (SQLException e) {
